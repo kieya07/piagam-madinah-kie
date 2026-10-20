@@ -1,0 +1,981 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Media Interaktif PAI — Piagam Madinah</title>
+<meta name="description" content="Media pembelajaran interaktif PAI tentang Piagam Madinah dan masyarakat majemuk.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy:#25316D;
+  --purple:#5B4B8A;
+  --orange:#F28C28;
+  --yellow:#FFD166;
+  --cream:#FFF9F0;
+  --blue:#DCE9FF;
+  --ink:#22253A;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  font-family:Poppins, sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,#fff9f0,#eef4ff 55%,#f7eaff);
+  min-height:100vh;
+}
+button,input,textarea { font:inherit; }
+button { cursor:pointer; border:0; }
+button:disabled { cursor:not-allowed; opacity:.65; }
+.header {
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#ffffffed;
+  border-bottom:1px solid #eee;
+}
+.nav {
+  max-width:1120px;
+  margin:auto;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:800;
+  color:var(--navy);
+}
+.brandIcon {
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--navy),var(--purple));
+  display:grid;
+  place-items:center;
+  color:white;
+  font-size:22px;
+}
+.navlinks { display:flex; gap:7px; flex-wrap:wrap; }
+.navlinks button {
+  background:#f4f3fb;
+  color:var(--navy);
+  padding:9px 12px;
+  border-radius:14px;
+  font-size:13px;
+  font-weight:700;
+}
+.navlinks button:hover { background:var(--yellow); }
+main { max-width:1120px; margin:auto; padding:26px 18px 60px; }
+.hero {
+  border-radius:30px;
+  padding:42px 30px;
+  background:linear-gradient(135deg,#25316D,#5B4B8A,#8B63B8);
+  color:white;
+}
+.badge {
+  display:inline-block;
+  padding:8px 13px;
+  border-radius:999px;
+  background:#ffffff25;
+  font-size:12px;
+  font-weight:800;
+}
+h1,h2,h3 { font-family:"Baloo 2",sans-serif; margin:0 0 10px; }
+h1 { font-size:clamp(38px,7vw,65px); line-height:1; }
+.hero p { line-height:1.8; }
+.heroActions { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
+.btn {
+  padding:12px 17px;
+  border-radius:15px;
+  font-weight:800;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+}
+.primary { background:var(--orange); color:white; }
+.light { background:white; color:var(--navy); }
+.ghost { background:#ffffff25; color:white; }
+.section { margin-top:28px; }
+.sectionTitle {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+.sectionTitle p { color:#6d6f80; font-size:13px; margin:0; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.grid2 { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+.card {
+  background:#ffffffed;
+  border:1px solid #eee;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 8px 22px #25316d12;
+}
+.menuCard { min-height:150px; cursor:pointer; }
+.menuCard:hover { transform:translateY(-3px); }
+.menuCard .emoji { font-size:35px; }
+.menuCard h3 { color:var(--navy); font-size:22px; margin-top:5px; }
+.menuCard p,.small { font-size:12px; color:#777; line-height:1.7; }
+.contentPage { display:none; }
+.contentPage.active { display:block; }
+.callout {
+  border-left:5px solid var(--orange);
+  background:#fff7ea;
+  padding:15px;
+  border-radius:14px;
+  line-height:1.8;
+}
+.article p,.article li { font-size:14px; line-height:1.85; }
+.article h3 { color:var(--purple); font-size:23px; margin-top:10px; }
+.fact { background:var(--blue); padding:14px; border-radius:16px; margin:10px 0; line-height:1.8; }
+.tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+.tab { background:#f0eff8; color:var(--navy); padding:10px; border-radius:12px; font-weight:700; }
+.tab.active { background:var(--navy); color:white; }
+.hidden { display:none!important; }
+.video-container {
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  margin:16px 0;
+}
+.video-container iframe {
+  position:absolute;
+  width:100%;
+  height:100%;
+  border:0;
+  border-radius:18px;
+}
+.input {
+  width:100%;
+  padding:13px;
+  border:2px solid #e5e5ef;
+  border-radius:13px;
+  background:white;
+}
+.form { display:grid; gap:12px; }
+.gameHero {
+  background:linear-gradient(135deg,#F28C28,#D95F59);
+  color:white;
+  border-radius:25px;
+  padding:24px;
+}
+.gameHero h2 { font-size:32px; }
+.gameArea { margin-top:16px; }
+.notice {
+  padding:13px;
+  background:#f1f4ff;
+  border-radius:13px;
+  color:#4c5280;
+  font-size:13px;
+  line-height:1.7;
+}
+.scoreboard { display:grid; gap:8px; }
+.scoreRow {
+  display:grid;
+  grid-template-columns:38px 1fr auto;
+  gap:10px;
+  align-items:center;
+  background:white;
+  border:1px solid #eee;
+  border-radius:13px;
+  padding:10px;
+}
+.rank { font-weight:900; color:var(--purple); }
+.choiceGrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.choice {
+  background:white;
+  border:2px solid #e8e8f0;
+  border-radius:14px;
+  padding:13px;
+  text-align:left;
+  color:var(--ink);
+  font-weight:600;
+}
+.choice.correct { background:#ddf8e8; border-color:#35a56a; }
+.choice.wrong { background:#ffe1e4; border-color:#dc5963; }
+.timer {
+  font-family:"Baloo 2",sans-serif;
+  font-size:38px;
+  font-weight:800;
+  color:var(--orange);
+  text-align:center;
+}
+.progress { height:9px; background:#eee; border-radius:99px; overflow:hidden; }
+.progress div { height:100%; background:var(--orange); }
+.kasus { background:#fff2f4; padding:16px; border-radius:16px; line-height:1.8; }
+.footer { text-align:center; padding:30px 10px; color:#777; font-size:12px; }
+@media(max-width:800px) {
+  .grid { grid-template-columns:repeat(2,1fr); }
+  .grid2 { grid-template-columns:1fr; }
+  .navlinks { display:none; }
+}
+@media(max-width:560px) {
+  .grid,.choiceGrid { grid-template-columns:1fr; }
+  main { padding:16px 12px 40px; }
+  .hero { padding:28px 20px; }
+  .card { padding:16px; }
+}
+</style>
+</head>
+
+<body>
+<header class="header">
+  <nav class="nav">
+    <div class="brand">
+      <div class="brandIcon">☪</div>
+      <span>PAI • MADINAH</span>
+    </div>
+    <div class="navlinks">
+      <button onclick="showPage('home')">Beranda</button>
+      <button onclick="showPage('materi')">Materi</button>
+      <button onclick="showPage('pbl')">PBL</button>
+      <button onclick="showPage('game')">Game</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- BERANDA -->
+<section id="home" class="contentPage active">
+  <div class="hero">
+    <span class="badge">MEDIA PEMBELAJARAN INTERAKTIF • PAI</span>
+    <h1>Piagam Madinah &amp; Masyarakat Majemuk</h1>
+    <p>Belajar sejarah Piagam Madinah, memahami prinsip hidup bersama dalam keberagaman, dan menghubungkannya dengan kehidupan Indonesia melalui Problem Based Learning.</p>
+    <div class="heroActions">
+      <button class="btn primary" onclick="showPage('materi')">📖 Mulai Belajar</button>
+      <button class="btn light" onclick="showPage('game')">🎮 Main Game</button>
+      <button class="btn ghost" onclick="showPage('pbl')">🧩 Tantangan PBL</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sectionTitle"><div><h2>Menu Utama</h2><p>Pilih aktivitas belajar</p></div></div>
+    <div class="grid">
+      <div class="card menuCard" onclick="showPage('video')"><div class="emoji">🎬</div><h3>Video Ajar</h3><p>Video tentang Piagam Madinah.</p></div>
+      <div class="card menuCard" onclick="showPage('materi')"><div class="emoji">📚</div><h3>Materi Lengkap</h3><p>Sejarah, isi, prinsip, dan relevansi.</p></div>
+      <div class="card menuCard" onclick="showPage('pbl')"><div class="emoji">🔎</div><h3>PBL</h3><p>Analisis masalah keberagaman.</p></div>
+      <div class="card menuCard" onclick="showPage('game')"><div class="emoji">⚡</div><h3>Kuis Kilat</h3><p>Kuis realtime antar-HP.</p></div>
+      <div class="card menuCard" onclick="showPage('kasus')"><div class="emoji">💬</div><h3>Studi Kasus</h3><p>Pilih tindakan yang tepat.</p></div>
+      <div class="card menuCard" onclick="showPage('refleksi')"><div class="emoji">💡</div><h3>Refleksi</h3><p>Hubungkan materi dengan keseharian.</p></div>
+    </div>
+  </div>
+  <div class="section grid2">
+    <div class="card">
+      <h3>🎯 Tujuan Pembelajaran</h3>
+      <ul>
+        <li>Menjelaskan latar belakang Piagam Madinah.</li>
+        <li>Mengidentifikasi prinsip hidup bersama.</li>
+        <li>Menganalisis kehidupan masyarakat majemuk.</li>
+        <li>Menghubungkan nilai Piagam Madinah dengan Indonesia.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🧠 Pertanyaan Pemantik</h3>
+      <div class="callout">Bagaimana kita tetap hidup rukun ketika memiliki perbedaan suku, agama, bahasa, dan kebiasaan?</div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video" class="contentPage">
+  <div class="card">
+    <h2>🎬 Video Ajar Piagam Madinah</h2>
+    <p>Simak video berikut untuk memahami Piagam Madinah dan kehidupan masyarakat majemuk.</p>
+    <div class="video-container">
+      <iframe src="https://www.youtube-nocookie.com/embed/PbaGG7I85pc"
+        title="Video Ajar Piagam Madinah" loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+    </div>
+    <p>📌 Setelah menonton, catat tiga prinsip hidup bersama yang dapat diterapkan di Indonesia.</p>
+    <a href="https://youtu.be/PbaGG7I85pc" target="_blank" rel="noopener noreferrer">▶️ Tonton di YouTube</a>
+    <p><button class="btn primary" onclick="showPage('home')">← Kembali ke Menu</button></p>
+  </div>
+</section>
+
+<!-- MATERI -->
+<section id="materi" class="contentPage">
+  <div class="sectionTitle">
+    <div><h2>📖 Materi Piagam Madinah</h2><p>Pilih bagian yang ingin dipelajari.</p></div>
+    <button class="btn primary" onclick="showPage('home')">← Menu</button>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="matTab(this,'m1')">Pengertian</button>
+    <button class="tab" onclick="matTab(this,'m2')">Latar Belakang</button>
+    <button class="tab" onclick="matTab(this,'m3')">Isi &amp; Prinsip</button>
+    <button class="tab" onclick="matTab(this,'m4')">Masyarakat Madinah</button>
+    <button class="tab" onclick="matTab(this,'m5')">Relevansi Indonesia</button>
+    <button class="tab" onclick="matTab(this,'m6')">Hikmah</button>
+  </div>
+
+  <article id="m1" class="card article mat">
+    <h3>1. Pengertian Piagam Madinah</h3>
+    <p>Piagam Madinah adalah kesepakatan tertulis yang mengatur kehidupan bersama berbagai kelompok yang tinggal di Madinah pada masa Nabi Muhammad SAW. Piagam ini juga dikenal sebagai Shahifah Madinah.</p>
+    <div class="fact"><strong>Intinya:</strong> perbedaan tidak harus menjadi sumber konflik. Masyarakat dapat menyepakati aturan untuk menjaga keamanan, keadilan, dan tanggung jawab bersama.</div>
+  </article>
+
+  <article id="m2" class="card article mat hidden">
+    <h3>2. Latar Belakang</h3>
+    <p>Masyarakat Yatsrib, yang kemudian dikenal sebagai Madinah, terdiri atas kelompok-kelompok dengan latar belakang suku dan keyakinan yang beragam. Setelah hijrah pada 622 M, diperlukan kesepakatan untuk mengatur hubungan sosial dan menjaga keamanan bersama.</p>
+    <ol>
+      <li>Nabi Muhammad SAW hijrah ke Madinah.</li>
+      <li>Muhajirin dan Ansar membangun persaudaraan.</li>
+      <li>Kelompok masyarakat menyusun kesepakatan.</li>
+      <li>Kesepakatan digunakan untuk mengatur hak, kewajiban, dan keamanan.</li>
+    </ol>
+  </article>
+
+  <article id="m3" class="card article mat hidden">
+    <h3>3. Isi dan Prinsip Utama</h3>
+    <div class="fact"><strong>Persatuan:</strong> kelompok berbeda dapat bekerja sama.</div>
+    <div class="fact"><strong>Keadilan:</strong> hak dan kewajiban perlu dihormati.</div>
+    <div class="fact"><strong>Kebebasan beragama:</strong> perbedaan keyakinan dihormati sesuai kesepakatan.</div>
+    <div class="fact"><strong>Keamanan bersama:</strong> masyarakat bertanggung jawab menjaga ketertiban.</div>
+    <div class="fact"><strong>Musyawarah:</strong> masalah diselesaikan melalui komunikasi dan aturan.</div>
+    <div class="fact"><strong>Solidaritas:</strong> warga saling membantu dan tidak berbuat zalim.</div>
+  </article>
+
+  <article id="m4" class="card article mat hidden">
+    <h3>4. Masyarakat Madinah yang Majemuk</h3>
+    <p>Masyarakat Madinah terdiri atas komunitas yang memiliki latar belakang berbeda. Piagam Madinah menjadi salah satu kesepakatan yang mengatur hubungan sosial dan tanggung jawab di antara kelompok-kelompok tersebut.</p>
+    <ul>
+      <li>Keberagaman perlu dikelola dengan kesepakatan.</li>
+      <li>Hak berjalan bersama tanggung jawab.</li>
+      <li>Keamanan membutuhkan kerja sama.</li>
+      <li>Perbedaan perlu dihadapi dengan sikap saling menghormati.</li>
+    </ul>
+  </article>
+
+  <article id="m5" class="card article mat hidden">
+    <h3>5. Relevansi bagi Indonesia</h3>
+    <p>Indonesia memiliki keberagaman suku, bahasa, budaya, daerah, dan agama. Nilai Piagam Madinah dapat menjadi bahan refleksi untuk membangun kehidupan bersama, meskipun konteks sejarah Madinah berbeda dengan sistem kenegaraan Indonesia.</p>
+    <div class="fact"><strong>Persatuan:</strong> tetap bekerja sama meskipun berbeda.</div>
+    <div class="fact"><strong>Keadilan:</strong> tidak memihak karena latar belakang seseorang.</div>
+    <div class="fact"><strong>Toleransi:</strong> menghormati orang lain tanpa harus mengubah keyakinan sendiri.</div>
+    <div class="fact"><strong>Gotong royong:</strong> membantu untuk kepentingan bersama.</div>
+  </article>
+
+  <article id="m6" class="card article mat hidden">
+    <h3>6. Hikmah yang Dapat Diambil</h3>
+    <ol>
+      <li>Belajar hidup bersama dalam perbedaan.</li>
+      <li>Mengutamakan keadilan.</li>
+      <li>Menghormati hak dan menjalankan kewajiban.</li>
+      <li>Membangun komunikasi.</li>
+      <li>Menghindari penghinaan dan diskriminasi.</li>
+      <li>Bekerja sama untuk kepentingan bersama.</li>
+      <li>Menyelesaikan konflik melalui musyawarah.</li>
+    </ol>
+  </article>
+</section>
+
+<!-- PBL -->
+<section id="pbl" class="contentPage">
+  <div class="sectionTitle">
+    <div><h2>🔎 Tantangan PBL</h2><p>Analisis masalah keberagaman.</p></div>
+    <button class="btn primary" onclick="showPage('home')">← Menu</button>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>🧩 Langkah PBL</h3>
+      <ol>
+        <li>Memahami masalah keberagaman.</li>
+        <li>Membentuk kelompok dan menentukan masalah.</li>
+        <li>Membaca materi Piagam Madinah.</li>
+        <li>Menyusun solusi berdasarkan prinsip yang dipelajari.</li>
+        <li>Mempresentasikan dan mengevaluasi solusi.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>🎯 Produk Kelompok</h3>
+      <p>Buat “Piagam Kelas Harmonis” yang memuat minimal enam aturan untuk menghargai perbedaan, mencegah perundungan, membangun gotong royong, dan menyelesaikan konflik.</p>
+      <button class="btn primary" onclick="showPage('game')">Lanjut ke Kuis ⚡</button>
+    </div>
+  </div>
+  <div class="card section">
+    <h3>📋 LKPD Digital — Analisis Kasus</h3>
+    <div class="kasus">Dalam kerja kelompok, beberapa siswa hanya mau bekerja dengan teman yang dianggap satu kelompok. Siswa lainnya diabaikan sehingga tugas tidak selesai dan muncul pertengkaran.</div>
+    <p><label for="lk1">1. Apa masalah utamanya?</label></p>
+    <textarea id="lk1" class="input" rows="3"></textarea>
+    <p><label for="lk2">2. Prinsip Piagam Madinah apa yang relevan?</label></p>
+    <textarea id="lk2" class="input" rows="3"></textarea>
+    <p><label for="lk3">3. Apa solusi yang kelompokmu tawarkan?</label></p>
+    <textarea id="lk3" class="input" rows="3"></textarea>
+    <p><label for="lk4">4. Bagaimana penerapannya di sekolah?</label></p>
+    <textarea id="lk4" class="input" rows="3"></textarea>
+    <button class="btn primary" onclick="saveLKPD()">💾 Simpan Jawaban</button>
+    <p class="small">Jawaban disimpan pada browser di perangkat ini.</p>
+  </div>
+</section>
+
+<!-- GAME LINTAS HP -->
+<section id="game" class="contentPage">
+  <div class="gameHero">
+    <h2>🏆 Siapa Paling Cepat?</h2>
+    <p>Guru membuat room, kemudian siswa masuk menggunakan kode yang sama.</p>
+  </div>
+  <div class="gameArea grid2">
+    <div class="card" id="joinCard">
+      <h3>📱 Masuk Permainan</h3>
+      <div class="form">
+        <input id="playerName" class="input" placeholder="Nama kamu" maxlength="30">
+        <input id="roomCode" class="input" placeholder="Kode room, misalnya MADINAH8" maxlength="12">
+        <button class="btn primary" onclick="joinGame()">🚀 Masuk Room</button>
+        <button class="btn" style="background:#eeeafb;color:#5B4B8A" onclick="hostGame()">👩‍🏫 Buat Room / Mode Guru</button>
+      </div>
+      <p id="firebaseStatus" class="notice">Status: menghubungkan ke Firebase...</p>
+    </div>
+    <div class="card">
+      <h3>📊 Papan Skor</h3>
+      <div id="scoreboard" class="scoreboard"><div class="notice">Belum ada pemain.</div></div>
+    </div>
+  </div>
+  <div id="gamePanel" class="card section">
+    <div class="notice">Belum masuk room. Setelah masuk, pertanyaan akan muncul di sini.</div>
+  </div>
+</section>
+
+<!-- STUDI KASUS -->
+<section id="kasus" class="contentPage">
+  <div class="sectionTitle">
+    <div><h2>💬 Game Studi Kasus</h2><p>Pilih tindakan yang paling tepat.</p></div>
+    <button class="btn primary" onclick="showPage('home')">← Menu</button>
+  </div>
+  <div class="card"><div id="caseGame"></div></div>
+</section>
+
+<!-- REFLEKSI -->
+<section id="refleksi" class="contentPage">
+  <div class="sectionTitle">
+    <div><h2>💡 Refleksi</h2><p>Hubungkan materi dengan kehidupan nyata.</p></div>
+    <button class="btn primary" onclick="showPage('home')">← Menu</button>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>3-2-1 Refleksi</h3>
+      <p>3 hal baru yang saya pelajari:</p><textarea class="input" rows="3"></textarea>
+      <p>2 nilai yang bisa saya terapkan:</p><textarea class="input" rows="3"></textarea>
+      <p>1 tindakan yang akan saya lakukan:</p><textarea class="input" rows="3"></textarea>
+    </div>
+    <div class="card">
+      <h3>🌟 Kalimat Penutup</h3>
+      <div class="callout">“Berbeda bukan alasan untuk bermusuhan. Kita dapat bekerja sama dengan tetap menghargai identitas dan keyakinan masing-masing.”</div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">Media Pembelajaran Interaktif PAI • Piagam Madinah &amp; Kehidupan Masyarakat Majemuk</div>
+</main>
+
+<script type="module">
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+  getDatabase, ref, set, update, onValue, get,
+  serverTimestamp, onDisconnect, remove
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+/* Ganti konfigurasi ini jika memakai project Firebase lain. */
+const firebaseConfig = {
+  apiKey: "AIzaSyAQWDr7s3nH42yESrc8c5lzwUtoKJb42Q",
+  authDomain: "kieya-cc697.firebaseapp.com",
+  databaseURL: "https://kieya-cc697-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "kieya-cc697",
+  storageBucket: "kieya-cc697.firebasestorage.app",
+  messagingSenderId: "525059189413",
+  appId: "1:525059189413:web:fc8a2a0ce6c6442a193b4c"
+};
+
+let db = null;
+let currentRoom = "";
+let currentPlayer = "";
+let isHost = false;
+let offset = 0;
+let answerLocked = false;
+let unsubscribeRoom = null;
+let timerInt = null;
+
+const questions = [
+  {q:"Apa tujuan utama Piagam Madinah?",a:["Menghapus semua perbedaan","Mengatur hidup bersama berbagai kelompok di Madinah","Memindahkan pusat pemerintahan ke Makkah","Membatasi perdagangan"],c:1},
+  {q:"Masyarakat Madinah pada masa Nabi Muhammad SAW bersifat...",a:["Seragam","Majemuk","Tertutup","Tanpa kelompok"],c:1},
+  {q:"Salah satu prinsip penting Piagam Madinah adalah...",a:["Diskriminasi","Keadilan","Permusuhan","Pemaksaan"],c:1},
+  {q:"Sikap yang sesuai dengan masyarakat majemuk adalah...",a:["Menghormati perbedaan","Memaksa orang lain sama","Mengucilkan kelompok lain","Menyebarkan ejekan"],c:0},
+  {q:"Tanggung jawab bersama di sekolah ditunjukkan dengan...",a:["Membiarkan teman kesulitan","Menolak kerja kelompok","Bekerja sama menyelesaikan tugas","Memilih teman berdasarkan suku"],c:2},
+  {q:"Jika terjadi konflik karena perbedaan, langkah yang tepat adalah...",a:["Membalas","Musyawarah dan mencari solusi adil","Menyebarkan masalah","Menghindari semua orang"],c:1},
+  {q:"Nilai Piagam Madinah yang relevan bagi Indonesia adalah...",a:["Persatuan dan keadilan","Permusuhan antarkelompok","Penghapusan budaya","Pemaksaan keyakinan"],c:0},
+  {q:"Menghormati teman berbeda agama berarti...",a:["Harus mengikuti agamanya","Menghargai haknya tanpa mengubah keyakinan sendiri","Tidak boleh berteman","Harus mengubah keyakinan sendiri"],c:1},
+  {q:"Contoh gotong royong di kelas adalah...",a:["Hanya satu siswa bekerja","Semua anggota berkontribusi sesuai kesepakatan","Siswa tertentu tidak boleh ikut","Memilih anggota berdasarkan daerah"],c:1},
+  {q:"Pelajaran utama Piagam Madinah adalah...",a:["Perbedaan harus dihapus","Keberagaman perlu dikelola dengan aturan dan tanggung jawab bersama","Konflik tidak dapat dihindari","Setiap kelompok hidup sendiri"],c:1}
+];
+
+function roomPath() {
+  return "rooms/" + currentRoom;
+}
+function nowServer() {
+  return Date.now() + offset;
+}
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, ch => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;",
+    '"':"&quot;", "'":"&#039;"
+  })[ch]);
+}
+
+/* Navigasi halaman */
+window.showPage = function(id) {
+  document.querySelectorAll(".contentPage").forEach(el => el.classList.remove("active"));
+  const page = document.getElementById(id);
+  if (page) page.classList.add("active");
+  window.scrollTo({top:0, behavior:"smooth"});
+  if (id === "kasus") initCaseGame();
+};
+
+/* Tab materi */
+window.matTab = function(button, id) {
+  document.querySelectorAll(".mat").forEach(el => el.classList.add("hidden"));
+  document.getElementById(id)?.classList.remove("hidden");
+  document.querySelectorAll(".tabs .tab").forEach(el => el.classList.remove("active"));
+  button.classList.add("active");
+};
+
+/* Simpan LKPD lokal */
+window.saveLKPD = function() {
+  const data = {
+    masalah:document.getElementById("lk1").value,
+    prinsip:document.getElementById("lk2").value,
+    solusi:document.getElementById("lk3").value,
+    penerapan:document.getElementById("lk4").value
+  };
+  localStorage.setItem("lkpdMadinah", JSON.stringify(data));
+  alert("Jawaban LKPD tersimpan di perangkat ini.");
+};
+
+/* Status Firebase */
+try {
+  const app = initializeApp(firebaseConfig);
+  db = getDatabase(app);
+  onValue(ref(db, ".info/serverTimeOffset"), snap => {
+    offset = snap.val() || 0;
+  });
+  document.getElementById("firebaseStatus").textContent =
+    "Status: aplikasi terhubung. Buat room atau masukkan kode room.";
+} catch (error) {
+  console.error("Firebase gagal diinisialisasi:", error);
+  document.getElementById("firebaseStatus").textContent =
+    "Firebase gagal dimuat. Periksa konfigurasi dan koneksi internet.";
+}
+
+function renderScore(players) {
+  const list = Object.values(players || {}).sort(
+    (a,b) => (b.score || 0) - (a.score || 0)
+  );
+  document.getElementById("scoreboard").innerHTML = list.length
+    ? list.map((p,i) => `
+      <div class="scoreRow">
+        <div class="rank">#${i+1}</div>
+        <div><strong>${escapeHtml(p.name || "Siswa")}</strong>
+        <div class="small">${p.correct || 0} benar • ${p.answered || 0} dijawab</div></div>
+        <strong>${p.score || 0}</strong>
+      </div>`).join("")
+    : '<div class="notice">Belum ada pemain.</div>';
+}
+
+/* Guru membuat room */
+window.hostGame = async function() {
+  if (!db) {
+    alert("Firebase belum siap. Periksa konfigurasi dan koneksi internet.");
+    return;
+  }
+  const code = (prompt("Masukkan kode room:", "MADINAH8") || "")
+    .trim().toUpperCase();
+  if (!/^[A-Z0-9_-]{3,12}$/.test(code)) {
+    alert("Kode room harus 3–12 karakter, menggunakan huruf, angka, - atau _.");
+    return;
+  }
+
+  try {
+    currentRoom = code;
+    isHost = true;
+    currentPlayer = "GURU";
+
+    const existing = await get(ref(db, roomPath()));
+    if (existing.exists()) {
+      const overwrite = confirm("Room ini sudah ada. Buat ulang room dan hapus skor lama?");
+      if (!overwrite) return;
+    }
+
+    await set(ref(db, roomPath()), {
+      status:"waiting",
+      host:"GURU",
+      questionIndex:-1,
+      players:{},
+      answers:{},
+      createdAt:serverTimestamp()
+    });
+
+    document.getElementById("joinCard").innerHTML = `
+      <h3>👩‍🏫 Mode Guru</h3>
+      <div class="notice">Kode room:
+      <strong style="font-size:25px;color:#25316D">${escapeHtml(code)}</strong>
+      <br>Bagikan kode ini kepada siswa.</div>
+      <p><button class="btn primary" onclick="startGame()">▶️ Mulai Kuis</button></p>
+      <button class="btn" onclick="resetRoom()">🗑️ Reset Room</button>`;
+    listenRoom();
+  } catch (error) {
+    console.error(error);
+    alert("Room gagal dibuat. Periksa aturan akses Firebase Realtime Database.");
+  }
+};
+
+/* Siswa bergabung */
+window.joinGame = async function() {
+  if (!db) {
+    alert("Firebase belum siap. Periksa konfigurasi dan koneksi internet.");
+    return;
+  }
+  const name = document.getElementById("playerName").value.trim();
+  const code = document.getElementById("roomCode").value.trim().toUpperCase();
+
+  if (!name || !code) {
+    alert("Isi nama dan kode room terlebih dahulu.");
+    return;
+  }
+
+  try {
+    currentRoom = code;
+    isHost = false;
+
+    const roomSnap = await get(ref(db, roomPath()));
+    if (!roomSnap.exists()) {
+      alert("Room tidak ditemukan. Minta guru membuat room terlebih dahulu.");
+      return;
+    }
+
+    const room = roomSnap.val();
+    if (room.status === "finished") {
+      alert("Permainan ini sudah selesai. Minta guru membuat room baru.");
+      return;
+    }
+
+    currentPlayer = (crypto.randomUUID)
+      ? crypto.randomUUID()
+      : "p" + Date.now() + Math.random().toString(36).slice(2,8);
+
+    const playerRef = ref(db, roomPath() + "/players/" + currentPlayer);
+    await set(playerRef, {
+      name:name, score:0, correct:0, answered:0,
+      joinedAt:serverTimestamp()
+    });
+    onDisconnect(playerRef).remove();
+
+    document.getElementById("joinCard").innerHTML = `
+      <h3>🙋 ${escapeHtml(name)}</h3>
+      <div class="notice">Room: <strong>${escapeHtml(code)}</strong>
+      <br>Menunggu permainan dimulai...</div>`;
+    listenRoom();
+  } catch (error) {
+    console.error(error);
+    alert("Tidak bisa masuk room. Periksa koneksi dan aturan akses Firebase.");
+  }
+};
+
+function listenRoom() {
+  if (unsubscribeRoom) unsubscribeRoom();
+  unsubscribeRoom = onValue(ref(db, roomPath()), snap => {
+    const data = snap.val();
+    if (!data) {
+      document.getElementById("gamePanel").innerHTML =
+        '<div class="notice">Room tidak ditemukan atau sudah dihapus.</div>';
+      return;
+    }
+    renderScore(data.players);
+    renderGame(data);
+  }, error => {
+    console.error(error);
+    alert("Gagal membaca room. Periksa aturan akses Firebase.");
+  });
+}
+
+function renderGame(data) {
+  const panel = document.getElementById("gamePanel");
+
+  if (data.status === "waiting") {
+    panel.innerHTML = `<div class="notice">⏳ Menunggu guru memulai.
+      Pemain masuk: <strong>${Object.keys(data.players || {}).length}</strong></div>`;
+    return;
+  }
+
+  if (data.status === "finished") {
+    const players = Object.values(data.players || {}).sort(
+      (a,b) => (b.score || 0) - (a.score || 0)
+    );
+    panel.innerHTML = `<div class="gameHero"><h2>🎉 Permainan Selesai!</h2>
+      <p>Terima kasih sudah bermain. Lihat papan skor untuk hasil akhir.</p></div>
+      <div class="card section"><h3>🏆 Hasil</h3>
+      ${players.map((p,i) => `<p><strong>#${i+1} ${escapeHtml(p.name)}</strong>
+      — ${p.score || 0} poin</p>`).join("")}</div>`;
+    return;
+  }
+
+  const qi = Number(data.questionIndex);
+  const q = questions[qi];
+  if (!q) return;
+
+  if (isHost) {
+    panel.innerHTML = `<div class="notice">👩‍🏫 Soal ${qi+1}/${questions.length}.
+      Siswa menjawab dari HP masing-masing.</div>
+      <div class="card section"><h2>${q.q}</h2>
+      <div class="progress"><div style="width:${((qi+1)/questions.length)*100}%"></div></div>
+      <p class="small">Jawaban siswa akan tercatat di papan skor.</p>
+      <button class="btn primary" onclick="${qi === questions.length-1 ? "finishGame()" : "nextQuestion()"}">
+      ${qi === questions.length-1 ? "🏁 Selesaikan" : "➡️ Soal Berikutnya"}</button></div>`;
+    return;
+  }
+
+  const answer = ((data.answers || {})[currentPlayer] || {})[qi];
+  if (answer) {
+    panel.innerHTML = `<div class="gameHero"><h2>✅ Jawaban terkirim!</h2>
+      <p>Tunggu soal berikutnya.</p></div>`;
+    return;
+  }
+
+  answerLocked = false;
+  panel.innerHTML = `<div class="card">
+    <div class="timer" id="qTimer">5.0 dtk</div>
+    <p class="small">Soal ${qi+1}/${questions.length}</p>
+    <h2>${q.q}</h2>
+    <div class="choiceGrid">${q.a.map((text,i) =>
+      `<button class="choice" onclick="submitAnswer(${i})">${String.fromCharCode(65+i)}. ${text}</button>`
+    ).join("")}</div></div>`;
+  startTimer(data.questionStartedAt);
+}
+
+function startTimer(startAt) {
+  clearInterval(timerInt);
+  const tick = () => {
+    const el = document.getElementById("qTimer");
+    if (!el) {
+      clearInterval(timerInt);
+      return;
+    }
+    const remain = Math.max(0, 5000 - (nowServer() - (startAt || nowServer())));
+    el.textContent = (remain / 1000).toFixed(1) + " dtk";
+    if (remain <= 0) clearInterval(timerInt);
+  };
+  tick();
+  timerInt = setInterval(tick, 100);
+}
+
+/* Siswa menjawab */
+window.submitAnswer = async function(choice) {
+  if (answerLocked || !db || !currentRoom || !currentPlayer) return;
+  answerLocked = true;
+
+  try {
+    const snap = await get(ref(db, roomPath()));
+    const data = snap.val();
+
+    if (!data || data.status !== "playing") {
+      answerLocked = false;
+      return;
+    }
+
+    const qi = Number(data.questionIndex);
+    const q = questions[qi];
+    if (!q) {
+      answerLocked = false;
+      return;
+    }
+
+    const previous = ((data.answers || {})[currentPlayer] || {})[qi];
+    if (previous) return;
+
+    const elapsed = Math.max(0, nowServer() - (data.questionStartedAt || nowServer()));
+    const correct = choice === q.c;
+    const points = correct && elapsed <= 5000
+      ? 100 + Math.max(0, 100 - Math.floor(elapsed / 50))
+      : 0;
+
+    const player = (data.players || {})[currentPlayer];
+    if (!player) {
+      answerLocked = false;
+      alert("Data pemain tidak ditemukan. Silakan masuk room kembali.");
+      return;
+    }
+
+    const updates = {};
+    updates[`${roomPath()}/answers/${currentPlayer}/${qi}`] = {
+      choice:choice,
+      correct:correct,
+      points:points,
+      submittedAt:serverTimestamp(),
+      elapsed:elapsed
+    };
+    updates[`${roomPath()}/players/${currentPlayer}/score`] = (player.score || 0) + points;
+    updates[`${roomPath()}/players/${currentPlayer}/correct`] = (player.correct || 0) + (correct ? 1 : 0);
+    updates[`${roomPath()}/players/${currentPlayer}/answered`] = (player.answered || 0) + 1;
+
+    await update(ref(db), updates);
+
+    document.querySelectorAll(".choice").forEach((button,i) => {
+      button.disabled = true;
+      if (i === choice) button.classList.add(correct ? "correct" : "wrong");
+    });
+  } catch (error) {
+    console.error(error);
+    answerLocked = false;
+    alert("Jawaban gagal disimpan. Periksa koneksi internet.");
+  }
+};
+
+/* Guru mengontrol jalannya kuis */
+window.startGame = async function() {
+  if (!db || !isHost || !currentRoom) return;
+  try {
+    await update(ref(db, roomPath()), {
+      status:"playing",
+      questionIndex:0,
+      questionStartedAt:serverTimestamp(),
+      answers:{}
+    });
+  } catch (error) {
+    console.error(error);
+    alert("Gagal memulai permainan. Periksa aturan akses Firebase.");
+  }
+};
+
+window.nextQuestion = async function() {
+  if (!db || !isHost || !currentRoom) return;
+  try {
+    const snap = await get(ref(db, roomPath()));
+    const data = snap.val();
+    if (!data || data.status !== "playing") return;
+
+    const next = Number(data.questionIndex) + 1;
+    if (next >= questions.length) {
+      await window.finishGame();
+      return;
+    }
+    await update(ref(db, roomPath()), {
+      questionIndex:next,
+      questionStartedAt:serverTimestamp()
+    });
+  } catch (error) {
+    console.error(error);
+    alert("Gagal membuka soal berikutnya.");
+  }
+};
+
+window.finishGame = async function() {
+  if (!db || !isHost || !currentRoom) return;
+  try {
+    await update(ref(db, roomPath()), {status:"finished"});
+  } catch (error) {
+    console.error(error);
+    alert("Gagal menyelesaikan permainan.");
+  }
+};
+
+window.resetRoom = async function() {
+  if (!db || !isHost || !currentRoom) return;
+  if (!confirm("Hapus room dan skor permainan ini?")) return;
+  try {
+    await remove(ref(db, roomPath()));
+    if (unsubscribeRoom) unsubscribeRoom();
+    location.reload();
+  } catch (error) {
+    console.error(error);
+    alert("Room gagal dihapus.");
+  }
+};
+
+/* Game studi kasus */
+const cases = [
+  {
+    q:"Temanmu berbeda daerah dan logat bicara. Beberapa siswa mengejeknya. Apa tindakan paling tepat?",
+    a:["Ikut tertawa","Menghentikan ejekan dan menghargai perbedaan","Diam saja","Membalas mengejek"],
+    c:1,
+    e:"Menghargai martabat orang lain dan mencegah perlakuan yang merugikan."
+  },
+  {
+    q:"Dalam kerja kelompok, satu siswa berbeda keyakinan. Apa yang sebaiknya dilakukan?",
+    a:["Menolaknya","Tetap bekerja sama dalam tugas dan saling menghormati","Memaksanya mengikuti ibadah kelompok","Menyuruhnya bekerja sendiri"],
+    c:1,
+    e:"Kerja sama sosial dapat dilakukan dengan tetap menghormati perbedaan keyakinan."
+  },
+  {
+    q:"Dua kelompok berselisih karena pembagian tugas. Apa langkah awal yang tepat?",
+    a:["Langsung menyalahkan satu pihak","Bermusyawarah dan menyusun kesepakatan yang adil","Menyebarkan masalah","Membiarkannya"],
+    c:1,
+    e:"Musyawarah membantu konflik diselesaikan secara adil."
+  },
+  {
+    q:"Kelas ingin membuat aturan hidup bersama. Pilihan yang paling tepat?",
+    a:["Menguntungkan kelompok tertentu","Jelas, adil, disepakati, dan mengatur tanggung jawab","Tidak perlu aturan","Bebas melakukan apa saja"],
+    c:1,
+    e:"Kesepakatan bersama perlu melindungi ketertiban, hak, dan tanggung jawab."
+  }
+];
+
+let caseIdx = 0;
+
+function initCaseGame() {
+  caseIdx = 0;
+  renderCase();
+}
+
+function renderCase() {
+  const c = cases[caseIdx];
+  const box = document.getElementById("caseGame");
+  box.innerHTML = `<p class="small">Kasus ${caseIdx+1} dari ${cases.length}</p>
+    <h2>${c.q}</h2>
+    <div class="choiceGrid">${c.a.map((text,i) =>
+      `<button class="choice" onclick="answerCase(${i})">${String.fromCharCode(65+i)}. ${text}</button>`
+    ).join("")}</div><div id="caseExplain"></div>`;
+}
+
+window.answerCase = function(i) {
+  const c = cases[caseIdx];
+  const correct = i === c.c;
+
+  document.querySelectorAll("#caseGame .choice").forEach((button,n) => {
+    button.disabled = true;
+    if (n === c.c) button.classList.add("correct");
+    if (n === i && !correct) button.classList.add("wrong");
+  });
+
+  document.getElementById("caseExplain").innerHTML =
+    `<div class="callout"><strong>${correct ? "✅ Tepat!" : "💡 Belum tepat."}</strong><br>${c.e}</div>
+    <button class="btn primary" style="margin-top:12px" onclick="${caseIdx < cases.length-1 ? "nextCase()" : "finishCase()"}">
+    ${caseIdx < cases.length-1 ? "Kasus Berikutnya →" : "Selesai 🎉"}</button>`;
+};
+
+window.nextCase = function() {
+  caseIdx++;
+  renderCase();
+};
+
+window.finishCase = function() {
+  document.getElementById("caseGame").innerHTML =
+    `<div class="gameHero"><h2>🎉 Hebat!</h2>
+    <p>Kamu sudah menyelesaikan semua studi kasus.</p>
+    <button class="btn light" onclick="showPage('pbl')">Lanjut PBL</button></div>`;
+};
+
+initCaseGame();
+</script>
+</body>
+</html>
